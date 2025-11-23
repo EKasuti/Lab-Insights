@@ -41,7 +41,7 @@ export default function ScatterPlot({ data, xAxis, yAxis }: ScatterPlotProps) {
     });
 
     return (
-        <div className="h-[400px] w-full">
+        <div className="h-[500px] w-full">
             <ResponsiveContainer width="100%" height="100%">
                 <ScatterChart
                     margin={{
@@ -52,7 +52,7 @@ export default function ScatterPlot({ data, xAxis, yAxis }: ScatterPlotProps) {
                     }}
                 >
                     <CartesianGrid />
-                    <XAxis type="number" dataKey="x" name={xAxis}>
+                    <XAxis type="number" dataKey="x" name={xAxis} height={60}>
                         <Label value={xAxis} offset={0} position="bottom" />
                     </XAxis>
                     <YAxis type="number" dataKey="y" name={yAxis}>
