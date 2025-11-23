@@ -14,8 +14,16 @@ Element.prototype.releasePointerCapture = jest.fn();
 Element.prototype.hasPointerCapture = jest.fn();
 
 describe('Sidebar', () => {
+    const mockProps = {
+        xAxis: "Oven Temperature",
+        setXAxis: jest.fn(),
+        yAxis: "Viscosity",
+        setYAxis: jest.fn(),
+        mode: "scatter" as const,
+    };
+
     it('renders correctly', () => {
-        render(<Sidebar />);
+        render(<Sidebar {...mockProps} />);
 
         expect(screen.getByText('Controls')).toBeInTheDocument();
         expect(screen.getByText('X-Axis Variable')).toBeInTheDocument();

@@ -30,6 +30,5 @@ describe('Home Page', () => {
 
         expect(screen.getByText('Experiment Analysis Dashboard')).toBeInTheDocument();
         expect(screen.getByText('2 of 2 experiments displayed')).toBeInTheDocument();
-        expect(screen.getByText('Scatter Plot')).toBeInTheDocument();
     });
 });
