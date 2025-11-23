@@ -34,12 +34,6 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                 aria-label={`Histogram showing distribution of ${xAxis}`}
                 aria-describedby={descriptionId}
             >
-                <div id={descriptionId} className="sr-only">
-                    A histogram chart displaying the frequency distribution of {xAxis} values. 
-                    {chartData.length > 0 
-                        ? `The chart shows ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}.`
-                        : 'No data available to display.'}
-                </div>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={chartData}
@@ -63,9 +57,21 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                 </ResponsiveContainer>
             </div>
             
+            <div id={descriptionId} className="sr-only">
+                A histogram chart displaying the frequency distribution of {xAxis} values. 
+                {chartData.length > 0 
+                    ? `The chart shows ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}.`
+                    : 'No data available to display.'}
+            </div>
+            
             {/* Data table alternative for screen readers */}
             <table className="sr-only">
-                <caption>Histogram data for {xAxis}</caption>
+                <caption>
+                    Histogram data for {xAxis}
+                    {chartData.length > 0 
+                        ? ` - ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}`
+                        : ' - No data available'}
+                </caption>
                 <thead>
                     <tr>
                         <th>Range</th>
