@@ -1,0 +1,48 @@
+"use client";
+
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import SidebarControls from "./sidebar-controls";
+import { useState } from "react";
+
+interface MobileSidebarProps {
+    xAxis: string;
+    setXAxis: (value: string) => void;
+    yAxis: string;
+    setYAxis: (value: string) => void;
+    mode: "scatter" | "histogram";
+}
+
+export default function MobileSidebar({
+    xAxis,
+    setXAxis,
+    yAxis,
+    setYAxis,
+    mode,
+}: MobileSidebarProps) {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="md:hidden fixed top-4 right-4 z-50">
+                    <Menu className="h-4 w-4" />
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <SheetTitle className="mb-4">Controls</SheetTitle>
+                <SheetDescription className="sr-only">
+                    Adjust the dashboard controls for the experiment analysis.
+                </SheetDescription>
+                <SidebarControls
+                    xAxis={xAxis}
+                    setXAxis={setXAxis}
+                    yAxis={yAxis}
+                    setYAxis={setYAxis}
+                    mode={mode}
+                />
+            </SheetContent>
+        </Sheet>
+    );
+}
