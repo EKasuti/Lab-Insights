@@ -20,11 +20,25 @@ interface ScatterPlotProps {
 
 export default function ScatterPlot({ data, xAxis, yAxis }: ScatterPlotProps) {
     // data transformation
-    const chartData = data.map((d) => ({
-        id: d.id,
-        x: d.inputs[xAxis as keyof typeof d.inputs] ?? d.outputs[xAxis as keyof typeof d.outputs] ?? 0,
-        y: d.inputs[yAxis as keyof typeof d.inputs] ?? d.outputs[yAxis as keyof typeof d.outputs] ?? 0,
-    }));
+    const chartData = data.map((d) => {
+        let x: number | null = null;
+        if (xAxis in d.inputs) {
+            x = d.inputs[xAxis as keyof typeof d.inputs] as number;
+        } else if (xAxis in d.outputs) {
+            x = d.outputs[xAxis as keyof typeof d.outputs] as number;
+        }
+        let y: number | null = null;
+        if (yAxis in d.inputs) {
+            y = d.inputs[yAxis as keyof typeof d.inputs] as number;
+        } else if (yAxis in d.outputs) {
+            y = d.outputs[yAxis as keyof typeof d.outputs] as number;
+        }
+        return {
+            id: d.id,
+            x,
+            y,
+        };
+    });
 
     return (
         <div className="h-[400px] w-full">
