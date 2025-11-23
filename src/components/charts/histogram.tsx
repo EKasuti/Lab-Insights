@@ -28,6 +28,13 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
 
     return (
         <>
+            <div id={descriptionId} className="sr-only">
+                A histogram chart displaying the frequency distribution of {xAxis} values. 
+                {chartData.length > 0 
+                    ? `The chart shows ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}.`
+                    : 'No data available to display.'}
+            </div>
+            
             <div 
                 className="h-[400px] w-full"
                 role="img"
@@ -57,13 +64,6 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                 </ResponsiveContainer>
             </div>
             
-            <div id={descriptionId} className="sr-only">
-                A histogram chart displaying the frequency distribution of {xAxis} values. 
-                {chartData.length > 0 
-                    ? `The chart shows ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}.`
-                    : 'No data available to display.'}
-            </div>
-            
             {/* Data table alternative for screen readers */}
             <table className="sr-only">
                 <caption>
@@ -80,7 +80,7 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                 </thead>
                 <tbody>
                     {chartData.map((item) => (
-                        <tr key={item.name}>
+                        <tr key={`${item.name}-${item.count}`}>
                             <td>{item.name}</td>
                             <td>{item.count}</td>
                         </tr>
