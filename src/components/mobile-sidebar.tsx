@@ -30,7 +30,7 @@ export default function MobileSidebar({
                     <Menu className="h-4 w-4" />
                 </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="left" className="w-[300px] sm:w-[400px] p-6">
                 <SheetTitle className="mb-4">Controls</SheetTitle>
                 <SheetDescription className="sr-only">
                     Adjust the dashboard controls for the experiment analysis.
