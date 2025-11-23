@@ -19,3 +19,26 @@ describe('cn', () => {
         expect(cn({ foo: true, bar: false })).toBe('foo');
     });
 });
+
+import { calculateHistogramData } from './utils';
+
+describe('calculateHistogramData', () => {
+    it('should bin data correctly', () => {
+        const data = [
+            { inputs: { val: 1 } },
+            { inputs: { val: 2 } },
+            { inputs: { val: 11 } },
+        ];
+        const bins = calculateHistogramData(data, 'val', 2);
+        // min=1, max=11, range=10, binWidth=5
+        // bin1: 1-6 (contains 1, 2) -> count 2
+        // bin2: 6-11 (contains 11) -> count 1
+        expect(bins).toHaveLength(2);
+        expect(bins[0].count).toBe(2);
+        expect(bins[1].count).toBe(1);
+    });
+
+    it('should handle empty data', () => {
+        expect(calculateHistogramData([], 'val')).toEqual([]);
+    });
+});
