@@ -6,8 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 interface Experiment {
-  inputs: Record<string, any>;
-  outputs: Record<string, any>;
+  inputs: Record<string, unknown>;
+  outputs: Record<string, unknown>;
 }
 
 export function calculateHistogramData(data: Experiment[], key: string, binCount = 10) {
@@ -16,7 +16,16 @@ export function calculateHistogramData(data: Experiment[], key: string, binCount
 
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const binWidth = (max - min) / binCount || 1;
+  
+  // Handle edge case: all values are the same
+  if (min === max) {
+    return [{
+      name: min.toFixed(1),
+      count: values.length,
+    }];
+  }
+
+  const binWidth = (max - min) / binCount;
 
   const bins = Array.from({ length: binCount }, (_, i) => ({
     name: (min + i * binWidth).toFixed(1),

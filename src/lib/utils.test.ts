@@ -41,4 +41,24 @@ describe('calculateHistogramData', () => {
     it('should handle empty data', () => {
         expect(calculateHistogramData([], 'val')).toEqual([]);
     });
+
+    it('should handle all identical values by returning a single bin', () => {
+        const data = [
+            { inputs: { val: 5 } },
+            { inputs: { val: 5 } },
+            { inputs: { val: 5 } },
+        ];
+        const bins = calculateHistogramData(data, 'val', 10);
+        expect(bins).toHaveLength(1);
+        expect(bins[0].name).toBe('5.0');
+        expect(bins[0].count).toBe(3);
+    });
+
+    it('should handle single value', () => {
+        const data = [{ inputs: { val: 42 } }];
+        const bins = calculateHistogramData(data, 'val', 10);
+        expect(bins).toHaveLength(1);
+        expect(bins[0].name).toBe('42.0');
+        expect(bins[0].count).toBe(1);
+    });
 });
