@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "../components/sidebar";
+import MobileSidebar from "@/components/mobile-sidebar";
 import { useLabData } from "../hooks/useLabData";
 import { useState } from "react";
 import ScatterPlot from "@/components/charts/scatter-plot";
@@ -23,9 +24,16 @@ export default function Home() {
         setYAxis={setYAxis}
         mode={mode}
       />
+      <MobileSidebar
+        xAxis={xAxis}
+        setXAxis={setXAxis}
+        yAxis={yAxis}
+        setYAxis={setYAxis}
+        mode={mode}
+      />
 
       {/* Main Dashboard */}
-      <main className="flex-1 p-10">
+      <main className="flex-1 p-4 md:p-10">
         <h1 className="mb-4 text-3xl font-bold">Experiment Analysis Dashboard</h1>
         <p className="mb-8 text-sm text-gray-600">
           {experiments.length} of {experiments.length} experiments displayed
