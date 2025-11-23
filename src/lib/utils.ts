@@ -5,7 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function calculateHistogramData(data: any[], key: string, binCount = 10) {
+interface Experiment {
+  inputs: Record<string, any>;
+  outputs: Record<string, any>;
+}
+
+export function calculateHistogramData(data: Experiment[], key: string, binCount = 10) {
   const values = data.map((d) => d.inputs[key] ?? d.outputs[key] ?? 0);
   if (values.length === 0) return [];
 

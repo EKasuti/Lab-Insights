@@ -43,7 +43,7 @@ export default function Sidebar({
           </Select>
         </div>
 
-        {/* Y-Axis (Only for scratter plot) */}
+        {/* Y-Axis (Only for scatter plot) */}
         {mode === "scatter" && (
           <div className="mb-6 space-y-2">
             <Label>Y-Axis Variable</Label>
