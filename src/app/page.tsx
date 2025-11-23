@@ -2,17 +2,27 @@
 
 import Sidebar from "../components/sidebar";
 import MobileSidebar from "@/components/mobile-sidebar";
-import { useLabData } from "../hooks/useLabData";
 import { useState } from "react";
 import ScatterPlot from "@/components/charts/scatter-plot";
 import Histogram from "@/components/charts/histogram";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useFilters, useLabData } from "@/hooks";
 
 export default function Home() {
   const experiments = useLabData();
   const [xAxis, setXAxis] = useState("Oven Temperature");
   const [yAxis, setYAxis] = useState("Viscosity");
   const [mode, setMode] = useState<"scatter" | "histogram">("scatter");
+
+  const {
+    filters,
+    availableVariables,
+    filteredData,
+    addFilter,
+    removeFilter,
+    updateFilter,
+    clearAllFilters,
+  } = useFilters(experiments);
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -23,6 +33,12 @@ export default function Home() {
         yAxis={yAxis}
         setYAxis={setYAxis}
         mode={mode}
+        activeFilters={filters}
+        availableVariables={availableVariables}
+        onAddFilter={addFilter}
+        onRemoveFilter={removeFilter}
+        onUpdateFilter={updateFilter}
+        onClearAll={clearAllFilters}
       />
       <MobileSidebar
         xAxis={xAxis}
@@ -30,13 +46,19 @@ export default function Home() {
         yAxis={yAxis}
         setYAxis={setYAxis}
         mode={mode}
+        activeFilters={filters}
+        availableVariables={availableVariables}
+        onAddFilter={addFilter}
+        onRemoveFilter={removeFilter}
+        onUpdateFilter={updateFilter}
+        onClearAll={clearAllFilters}
       />
 
       {/* Main Dashboard */}
       <main className="flex-1 p-4 md:p-10">
         <h1 className="mb-4 text-3xl font-bold">Experiment Analysis Dashboard</h1>
         <p className="mb-8 text-sm text-gray-600">
-          {experiments.length} of {experiments.length} experiments displayed
+          {filteredData.length} of {experiments.length} experiments displayed
         </p>
 
         {/* Chart Container */}
@@ -59,9 +81,9 @@ export default function Home() {
           </div>
 
           {mode === "scatter" ? (
-            <ScatterPlot data={experiments} xAxis={xAxis} yAxis={yAxis} />
+            <ScatterPlot data={filteredData} xAxis={xAxis} yAxis={yAxis} />
           ) : (
-            <Histogram data={experiments} xAxis={xAxis} />
+            <Histogram data={filteredData} xAxis={xAxis} />
           )}
         </div>
       </main>

@@ -34,3 +34,5 @@ export const Y_AXIS_VARIABLES = [
   { label: "Tensile Strength", value: "Tensile Strength" },
   { label: "Compression Set", value: "Compression Set" },
 ] as const;
+
+export const ALL_VARIABLES = [...X_AXIS_VARIABLES, ...Y_AXIS_VARIABLES] as const;
