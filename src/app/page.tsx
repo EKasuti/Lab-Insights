@@ -34,10 +34,10 @@ export default function Home() {
         {/* Chart Container */}
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold">
+            <h2 className="text-lg font-semibold pl-8">
               {mode === "scatter" ? "Scatter Plot" : "Histogram"}
             </h2>
-            <div className="w-[200px]">
+            <div className="w-36">
               <Select value={mode} onValueChange={(v) => setMode(v as "scatter" | "histogram")}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select mode" />

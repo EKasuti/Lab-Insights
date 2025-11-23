@@ -23,7 +23,7 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
     const chartData = useMemo(() => calculateHistogramData(data, xAxis), [data, xAxis]);
 
     return (
-        <div className="h-[400px] w-full">
+        <div className="h-[500px] w-full">
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                     data={chartData}
@@ -31,7 +31,7 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                         top: 20,
                         right: 30,
                         left: 20,
-                        bottom: 5,
+                        bottom: 15,
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
