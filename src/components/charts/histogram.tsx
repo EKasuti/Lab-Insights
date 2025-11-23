@@ -11,7 +11,7 @@ import {
     Label
 } from "recharts";
 import { Experiment } from "@/lib/types/experiments";
-import { useMemo } from "react";
+import { useMemo, useId } from "react";
 import { calculateHistogramData } from "@/lib/utils";
 
 interface HistogramProps {
@@ -21,6 +21,10 @@ interface HistogramProps {
 
 export default function Histogram({ data, xAxis }: HistogramProps) {
     const chartData = useMemo(() => calculateHistogramData(data, xAxis), [data, xAxis]);
+    const descriptionId = useId();
+    
+    const minCount = chartData.length > 0 ? Math.min(...chartData.map(d => d.count)) : 0;
+    const maxCount = chartData.length > 0 ? Math.max(...chartData.map(d => d.count)) : 0;
 
     return (
         <>
@@ -28,11 +32,11 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                 className="h-[400px] w-full"
                 role="img"
                 aria-label={`Histogram showing distribution of ${xAxis}`}
-                aria-describedby="histogram-description"
+                aria-describedby={descriptionId}
             >
-                <div id="histogram-description" className="sr-only">
+                <div id={descriptionId} className="sr-only">
                     A histogram chart displaying the frequency distribution of {xAxis} values. 
-                    The chart shows {chartData.length} bins with counts ranging from the data.
+                    The chart shows {chartData.length} bins with counts ranging from {minCount} to {maxCount}.
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
