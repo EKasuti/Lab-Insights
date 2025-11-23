@@ -35,4 +35,4 @@ export const Y_AXIS_VARIABLES = [
   { label: "Compression Set", value: "Compression Set" },
 ] as const;
 
-export const ALL_VARIABLES = [...X_AXIS_VARIABLES, ...Y_AXIS_VARIABLES];
+export const ALL_VARIABLES = [...X_AXIS_VARIABLES, ...Y_AXIS_VARIABLES] as const;

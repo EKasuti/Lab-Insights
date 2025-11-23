@@ -32,7 +32,7 @@ export default function Sidebar({
   onClearAll,
 }: SidebarProps) {
   return (
-    <aside className="hidden md:block w-64 border-r border-gray-200 bg-white p-6 sticky top-0 h-screen overflow-y-auto">
+    <aside className="hidden md:block w-64 border-r border-gray-200 bg-white p-6 pt-10 sticky top-0 h-screen overflow-y-auto">
       <h2 className="mb-6 text-lg font-semibold">Controls</h2>
 
       <SidebarControls
