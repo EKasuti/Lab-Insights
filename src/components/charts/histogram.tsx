@@ -36,7 +36,9 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
             >
                 <div id={descriptionId} className="sr-only">
                     A histogram chart displaying the frequency distribution of {xAxis} values. 
-                    The chart shows {chartData.length} bins with counts ranging from {minCount} to {maxCount}.
+                    {chartData.length > 0 
+                        ? `The chart shows ${chartData.length} bins with counts ranging from ${minCount} to ${maxCount}.`
+                        : 'No data available to display.'}
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
@@ -71,8 +73,8 @@ export default function Histogram({ data, xAxis }: HistogramProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {chartData.map((item, index) => (
-                        <tr key={index}>
+                    {chartData.map((item) => (
+                        <tr key={item.name}>
                             <td>{item.name}</td>
                             <td>{item.count}</td>
                         </tr>
