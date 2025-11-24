@@ -2,6 +2,7 @@
 
 import Sidebar from "../components/sidebar";
 import MobileSidebar from "@/components/mobile-sidebar";
+import InfoTooltip from "@/components/info-tooltip";
 import { useState } from "react";
 import ScatterPlot from "@/components/charts/scatter-plot";
 import Histogram from "@/components/charts/histogram";
@@ -56,7 +57,22 @@ export default function Home() {
 
       {/* Main Dashboard */}
       <main className="flex-1 p-4 md:p-10">
-        <h1 className="mb-4 text-3xl font-bold">Lab Dashboard</h1>
+        <div className="flex items-center gap-2 mb-4">
+          <h1 className="text-3xl font-bold">Lab Dashboard</h1>
+          <InfoTooltip
+            content={
+              <div className="space-y-2">
+                <p className="font-semibold">What you can do:</p>
+                <ul className="space-y-1 text-sm">
+                  <li>• Select X and Y axes from the sidebar</li>
+                  <li>• Switch between scatter plot and histogram</li>
+                  <li>• Add filters to narrow down data</li>
+                  <li>• Click data points for details</li>
+                </ul>
+              </div>
+            }
+          />
+        </div>
         <p className="mb-8 text-sm text-gray-600">
           {filteredData.length} of {experiments.length} experiments displayed
         </p>
