@@ -8,6 +8,9 @@ An interactive dashboard for aanalyzing scientific experiment data.
 - **Dynamic Filtering**: Filter experiments by any input or output variable using range sliders
 - **Responsive Design**: Optimized for both desktop and mobile devices
 
+## Live demo
+[Link](https://labinsights.vercel.app/) to live demo
+
 ## Getting Started
 
 ### Prerequisites
