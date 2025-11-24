@@ -44,7 +44,7 @@ export default function MobileSidebar({
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px] p-6 overflow-y-auto">
-                <SheetTitle className="mb-4">Controls</SheetTitle>
+                <SheetTitle className="mb-4">Data Controls</SheetTitle>
                 <SheetDescription className="sr-only">
                     Adjust the dashboard controls for the experiment analysis.
                 </SheetDescription>

@@ -56,7 +56,7 @@ export default function Home() {
 
       {/* Main Dashboard */}
       <main className="flex-1 p-4 md:p-10">
-        <h1 className="mb-4 text-3xl font-bold">Experiment Analysis Dashboard</h1>
+        <h1 className="mb-4 text-3xl font-bold">Lab Dashboard</h1>
         <p className="mb-8 text-sm text-gray-600">
           {filteredData.length} of {experiments.length} experiments displayed
         </p>

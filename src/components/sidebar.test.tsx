@@ -20,12 +20,22 @@ describe('Sidebar', () => {
         yAxis: "Viscosity",
         setYAxis: jest.fn(),
         mode: "scatter" as const,
+        activeFilters: [],
+        availableVariables: [
+            { label: "Oven Temperature", value: "Oven Temperature" },
+            { label: "Viscosity", value: "Viscosity" },
+        ],
+        onAddFilter: jest.fn(),
+        onRemoveFilter: jest.fn(),
+        onClearFilters: jest.fn(),
+        onUpdateFilter: jest.fn(),
+        onClearAll: jest.fn(),
     };
 
     it('renders correctly', () => {
         render(<Sidebar {...mockProps} />);
 
-        expect(screen.getByText('Controls')).toBeInTheDocument();
+        expect(screen.getByText('Data Controls')).toBeInTheDocument();
         expect(screen.getByText('X-Axis Variable')).toBeInTheDocument();
         expect(screen.getByText('Y-Axis Variable')).toBeInTheDocument();
 

@@ -28,7 +28,7 @@ describe('Home Page', () => {
     it('renders correctly', () => {
         render(<Home />);
 
-        expect(screen.getByText('Experiment Analysis Dashboard')).toBeInTheDocument();
+        expect(screen.getByText('Lab Dashboard')).toBeInTheDocument();
         expect(screen.getByText('2 of 2 experiments displayed')).toBeInTheDocument();
     });
 });

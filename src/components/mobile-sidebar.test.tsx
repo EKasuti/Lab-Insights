@@ -6,6 +6,13 @@ global.ResizeObserver = class ResizeObserver {
     observe() { }
     unobserve() { }
     disconnect() { }
+    // Mock properties
+    activeFilters = [];
+    availableVariables = [];
+    onAddFilter = jest.fn();
+    onRemoveFilter = jest.fn();
+    onClearFilters = jest.fn();
+    onApplyFilters = jest.fn();
 };
 
 // Mock pointer
@@ -20,6 +27,14 @@ describe('MobileSidebar', () => {
         yAxis: "Viscosity",
         setYAxis: jest.fn(),
         mode: "scatter" as const,
+        activeFilters: [],
+        availableVariables: [],
+        onAddFilter: jest.fn(),
+        onRemoveFilter: jest.fn(),
+        onClearFilters: jest.fn(),
+        onApplyFilters: jest.fn(),
+        onUpdateFilter: jest.fn(),
+        onClearAll: jest.fn(),
     };
 
     it('renders trigger button', () => {
@@ -34,7 +49,7 @@ describe('MobileSidebar', () => {
         const button = screen.getByRole('button');
         fireEvent.click(button);
 
-        expect(screen.getByText('Controls')).toBeInTheDocument();
+        expect(screen.getByText('Data Controls')).toBeInTheDocument();
         expect(screen.getByText('X-Axis Variable')).toBeInTheDocument();
     });
 });
